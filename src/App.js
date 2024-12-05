@@ -16,25 +16,19 @@ const ProfileCard = ({ profile }) => {
   useEffect(() => {
     const importImage = () => {
       try {
-        const rollNo = profile["Roll No"];
-        
-        // Create a context for all images in the images folder
-        const imageContext = require.context('./images', false, /\.(jpg|jpeg|png)$/);
-        
-        // Find the image that matches the roll number
-        const imagePath = imageContext.keys().find(path => 
-          path.includes(`${rollNo}.`) || path.includes(`${rollNo}`)
-        );
-  
-        if (imagePath) {
-          setImagePreview(imageContext(imagePath));
+        // Check if the profile has an image link
+        if (profile["Upload your most recent image"]) {
+          // Construct the path to the image in the src/images/ directory
+          const imagePath = `/images/${profile["Upload your most recent image"]}`;
+          console.log(imagePath)
+          setImagePreview(imagePath);
         } else {
           setImagePreview(null);
         }
       } catch (error) {
         console.error("Image not found", error);
-        setImagePreview(null);
-      }
+      setImagePreview(null);
+    }
     };
   
     importImage();
