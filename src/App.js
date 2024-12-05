@@ -16,11 +16,8 @@ const ProfileCard = ({ profile }) => {
   useEffect(() => {
     const importImage = () => {
       try {
-        // Check if the profile has an image link
         if (profile["Upload your most recent image"]) {
-          // Construct the path to the image in the src/images/ directory
           const imagePath = `/images/${profile["Upload your most recent image"]}`;
-          console.log(imagePath)
           setImagePreview(imagePath);
         } else {
           setImagePreview(null);
